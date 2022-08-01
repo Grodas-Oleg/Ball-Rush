@@ -1,8 +1,10 @@
 using System.Collections;
 using _DunkBall.Scripts.Utilities;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-namespace _DunkBall.Scripts
+namespace _DunkBall.Scripts.Core
 {
     public class Ball : Singleton<Ball>
     {
@@ -22,7 +24,7 @@ namespace _DunkBall.Scripts
         private Vector2 _force;
         private float _distance;
         private bool _isLocked;
-        public int CollisionCount => _collisionCount;
+        public static int CollisionCount => Instance._collisionCount;
         private void Start() => RigidBodyStatus(true);
 
         public static void SetParent(Transform parent)
@@ -36,6 +38,8 @@ namespace _DunkBall.Scripts
 
         private void OnMouseDown()
         {
+            if (EventSystem.current.IsPointerOverGameObject(0)) return;
+
             if (_isLocked) return;
 
             _startPoint = transform.position;
@@ -43,16 +47,20 @@ namespace _DunkBall.Scripts
 
         private void OnMouseUp()
         {
+            if (EventSystem.current.IsPointerOverGameObject(0)) return;
+
             if (_isLocked) return;
 
             if (_distance <= DRAG_DISTANCE_THRESHOLD) return;
 
             _trajectory.Fade(false);
-            RigidBodyStatus(false);
-            Push(_force);
-            _collisionCount = 0;
             _isLocked = true;
             transform.SetParent(null);
+
+            RigidBodyStatus(false);
+            Push(_force);
+
+            DOVirtual.DelayedCall(.3f, () => _collisionCount = 0);
 
             StartCoroutine(CheckLock());
         }
@@ -69,6 +77,8 @@ namespace _DunkBall.Scripts
 
         private void OnMouseDrag()
         {
+            if (EventSystem.current.IsPointerOverGameObject(0)) return;
+
             if (_isLocked) return;
 
             RigidBodyStatus(true);

@@ -10,6 +10,8 @@ namespace _DunkBall.Scripts.Audio
         [SerializeField] private AudioSource _mainSoundsAudioSource;
         [SerializeField] private AudioSource[] _soundsAudioSource;
 
+        public AudioHolder AudioHolder => _audioHolder;
+
         public static void PlaySoundByName(string clipName, float minPinch = 1f, float maxPitch = 1f) =>
             PlaySound(Instance._audioHolder.GetAudioClipByName(clipName), minPinch, maxPitch);
 

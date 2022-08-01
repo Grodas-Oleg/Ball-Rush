@@ -5,18 +5,20 @@ using _DunkBall.Scripts.EventLayer;
 using _DunkBall.Scripts.Utilities;
 using Lean.Pool;
 using UnityEngine;
-using static _DunkBall.Scripts.BasketPosition;
+using static _DunkBall.Scripts.Core.BasketPosition;
 using Random = UnityEngine.Random;
 
-namespace _DunkBall.Scripts
+namespace _DunkBall.Scripts.Core
 {
     public class RandomBasketSpawner : Singleton<RandomBasketSpawner>
     {
         [SerializeField] private List<BasketTransformContainer> _transformContainers;
         [SerializeField] private LeanGameObjectPool _basketPool;
-        [SerializeField] private List<BasketPosition> _freePositions;
-        [SerializeField] private BasketPosition _lastBasketPosition = Left;
         [SerializeField] private List<GameObject> _basketControllers;
+        [SerializeField] private GameObject _startBasket;
+
+        private List<BasketPosition> _freePositions;
+        private BasketPosition _lastBasketPosition = Left;
 
         private void Start()
         {
@@ -44,6 +46,8 @@ namespace _DunkBall.Scripts
 
             if (_basketControllers.Count <= 2) return;
 
+            if (_startBasket != null) Destroy(_startBasket);
+
             var lastBasket = _basketControllers[0];
             _basketControllers.Remove(lastBasket);
             _basketPool.Despawn(lastBasket);
@@ -51,7 +55,7 @@ namespace _DunkBall.Scripts
 
         private Transform GetRandomTransformByPosition()
         {
-            BasketPosition randomPosition = _freePositions[Random.Range(0, 1)];
+            BasketPosition randomPosition = _freePositions[Random.Range(0, 2)];
 
             foreach (var container in _transformContainers.Where(
                 container => container.BasketPosition == randomPosition))
@@ -71,11 +75,8 @@ namespace _DunkBall.Scripts
     {
         [SerializeField] private BasketPosition _basketPosition;
         [SerializeField] private List<Transform> _points;
-
         public Transform GetRandomTransform() => _points[Random.Range(0, _points.Count)];
-
         public BasketPosition BasketPosition => _basketPosition;
-        public List<Transform> Points => _points;
     }
 
     [Serializable]

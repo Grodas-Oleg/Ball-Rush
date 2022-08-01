@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: GOs
+    uniqueID: 834192957
+    locked: 0
+  - name: UI
+    uniqueID: 556583513
+    locked: 0

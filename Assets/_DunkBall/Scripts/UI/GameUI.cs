@@ -1,3 +1,4 @@
+using _DunkBall.Scripts.EventLayer;
 using _DunkBall.Scripts.Utilities;
 using DG.Tweening;
 using UnityEngine;
@@ -7,25 +8,34 @@ namespace _DunkBall.Scripts.UI
 {
     public class GameUI : Singleton<GameUI>
     {
-        [SerializeField] private ButtonView _pauseButton;
+        [SerializeField] private BaseView _startWindow;
         [SerializeField] private BaseView _pauseWindow;
+        [SerializeField] private BaseView _restartWindow;
+        [SerializeField] private ButtonView _pauseButton;
         [SerializeField] private Image _globalHider;
         private void Start() => _pauseWindow.Hide();
 
         protected override void OnAwake()
         {
-            base.OnAwake();
+            FadeGlobal(false, false, 0.5f);
+
             _pauseButton.Init(() => SwitchPauseWindow(true));
+
+            if (!EventBus.isFirstLaunch.Value)
+            {
+                _startWindow.Show(true);
+                EventBus.isFirstLaunch.Publish(true);
+            }
         }
 
         public static void SwitchInteractablePauseButton(bool flag) => Instance._pauseButton.SwitchInteractable(flag);
+        public static void HideStartWindow() => Instance._startWindow.Hide();
+        public static void ShowRestartWindow() => Instance._restartWindow.Show();
 
         public static void SwitchPauseWindow(bool flag)
         {
             if (flag)
-            {
                 Instance._pauseWindow.Show();
-            }
             else
                 Instance._pauseWindow.Hide();
         }

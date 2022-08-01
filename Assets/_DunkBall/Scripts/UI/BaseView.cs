@@ -1,6 +1,6 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _DunkBall.Scripts.UI
 {
@@ -9,15 +9,19 @@ namespace _DunkBall.Scripts.UI
     {
         [SerializeField] protected float _fadeDuration = 0.5f;
         [SerializeField] protected CanvasGroup _canvasGroup;
+        [SerializeField] protected Image _hider;
+        [SerializeField] protected Button _hiderButton;
 
         protected Sequence _animationSequence;
+        protected Tween _hiderTween;
 
         public virtual void Show(bool force = false)
         {
-            if (_animationSequence != null)
-                _animationSequence.Kill();
+            _animationSequence?.Kill();
 
             _canvasGroup.alpha = 0f;
+
+            HiderFade(true);
 
             if (force)
             {
@@ -36,10 +40,11 @@ namespace _DunkBall.Scripts.UI
 
         public void Hide(bool force = false)
         {
-            if (_animationSequence != null)
-                _animationSequence.Kill();
+            _animationSequence?.Kill();
 
             _canvasGroup.interactable = false;
+
+            HiderFade(false);
 
             if (force)
             {
@@ -53,6 +58,22 @@ namespace _DunkBall.Scripts.UI
                 .Append(_canvasGroup.DOFade(0f, _fadeDuration))
                 .AppendCallback(() => gameObject.SetActive(false))
                 .SetUpdate(true);
+        }
+
+        private void HiderFade(bool flag)
+        {
+            _hiderTween?.Kill();
+
+            if (_hider != null)
+            {
+                _hider.raycastTarget = flag;
+                _hiderTween = _hider.DOFade(flag ? 0.6f : 0f, _fadeDuration).SetUpdate(true)
+                    .OnComplete(() =>
+                    {
+                        if (_hiderButton != null)
+                            _hiderButton.interactable = flag;
+                    });
+            }
         }
 
         public virtual void Init(params object[] parameters)

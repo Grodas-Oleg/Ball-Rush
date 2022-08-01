@@ -9,11 +9,12 @@ namespace _DunkBall.Scripts.UI
         [SerializeField] private Button _resumeButton;
         [SerializeField] private Button _restartButton;
 
-        // private void Awake()
-        // {
-        //     _resumeButton.onClick.AddListener(() => GameUI.SwitchPauseWindow(false));
-        //     _restartButton.onClick.AddListener(ReloadLevel.Reload);
-        // }
+        private void Awake()
+        {
+            _resumeButton.onClick.AddListener(() => GameUI.SwitchPauseWindow(false));
+            _restartButton.onClick.AddListener(ReloadLevel.Reload);
+            _hiderButton.onClick.AddListener(() => GameUI.SwitchPauseWindow(false));
+        }
 
         private void OnEnable() => Time.timeScale = 0f;
 

@@ -1,3 +1,4 @@
+using _DunkBall.Scripts.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,11 @@ namespace _DunkBall.Scripts.UI
         [SerializeField] private SpriteRenderer _backgroundSprite;
         [SerializeField] private Sprite _light, _dark;
 
-        private void Awake() =>
+        private void Awake()
+        {
+            _backgroundSprite.sprite = DataSaver.GlobalData.CurrentTheme;
+            _buttonIcon.sprite = DataSaver.GlobalData.CurrentTheme == _dark ? _iconLight : _iconDark;
+
             _button.onClick.AddListener(() =>
             {
                 if (_backgroundSprite.sprite == _light)
@@ -24,6 +29,11 @@ namespace _DunkBall.Scripts.UI
                     _buttonIcon.sprite = _iconDark;
                     _backgroundSprite.sprite = _light;
                 }
+
+                var data = DataSaver.GlobalData;
+                data.CurrentTheme = _backgroundSprite.sprite;
+                DataSaver.GlobalData = data;
             });
+        }
     }
 }
