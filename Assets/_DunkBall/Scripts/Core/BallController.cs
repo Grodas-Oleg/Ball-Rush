@@ -90,9 +90,7 @@ namespace _DunkBall.Scripts.Core
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            if (_isLocked) return;
-
-            _startPoint = _ballTransform.position;
+            _startPoint = _camera.ScreenToWorldPoint(Input.mousePosition);
         }
 
         public static void SetParent(Transform parent)
@@ -110,7 +108,6 @@ namespace _DunkBall.Scripts.Core
                 yield return null;
 
             yield return new WaitForSeconds(UNLOCK_DELAY);
-            _startPoint = _ballTransform.position;
             _isLocked = false;
         }
 
