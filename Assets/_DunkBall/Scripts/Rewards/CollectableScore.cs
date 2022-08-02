@@ -19,7 +19,7 @@ namespace _DunkBall.Scripts.Rewards
             var data = DataSaver.GlobalData;
 
             int value;
-            if (Ball.CollisionCount <= 0)
+            if (BallController.CollisionCount <= 0)
             {
                 Announcer.SpawnAnnounce(transform.position, "perfect");
                 value = 2;

@@ -8,7 +8,7 @@ namespace _DunkBall.Scripts.Components
     {
         [SerializeField] private float _offset;
         [SerializeField] private float _smoothSpeed = .1f;
-        private Transform _targetTransform => Ball.Instance.transform;
+        private Transform _targetTransform => BallController.BallTransform;
         private void Start() => StartCoroutine(FollowTarget());
 
         private IEnumerator FollowTarget()
