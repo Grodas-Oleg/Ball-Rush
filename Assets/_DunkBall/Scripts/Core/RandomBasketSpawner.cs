@@ -20,7 +20,7 @@ namespace _DunkBall.Scripts.Core
         private List<BasketPosition> _freePositions;
         private BasketPosition _lastBasketPosition = Left;
 
-        private void Start()
+        protected override void OnAwake()
         {
             _freePositions = new List<BasketPosition>
             {
@@ -36,6 +36,8 @@ namespace _DunkBall.Scripts.Core
         private void SpawnBasket()
         {
             var randomTransform = GetRandomTransformByPosition();
+
+            if (randomTransform == null) Debug.Log(randomTransform + "is Null");
 
             var randomTransformPosition = randomTransform.position;
             randomTransformPosition.z = 0;
@@ -68,6 +70,8 @@ namespace _DunkBall.Scripts.Core
 
             return default;
         }
+
+        private void OnDestroy() => EventBus.OnNextBasketReached -= SpawnBasket;
     }
 
     [Serializable]

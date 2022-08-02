@@ -10,7 +10,7 @@ namespace _DunkBall.Scripts.Core
     public class BasketController : MonoBehaviour
     {
         private const float OUT_OFF_LEVEL_OFFSET = -2f;
-        
+
         [Range(0, 100)] [SerializeField] private int _starSpawnChanche;
         [SerializeField] private CollectableScore _score;
         [SerializeField] private CollectableStar _star;

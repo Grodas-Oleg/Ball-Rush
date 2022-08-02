@@ -20,3 +20,8 @@ MonoBehaviour:
   - 0
   _clips:
   - {fileID: 8300000, guid: 1a67e02a1bb89c74d90227d7d9613aed, type: 3}
+  - {fileID: 8300000, guid: a7af0363cec76a64f836f07cacb219fd, type: 3}
+  - {fileID: 8300000, guid: 86f2cad19c5ad7141a2926d9ceab0b1a, type: 3}
+  - {fileID: 8300000, guid: b94003736b00f4fa5a538e4908eaff32, type: 3}
+  - {fileID: 8300000, guid: 86c8f42d5b8268c45b5853a04cd96306, type: 3}
+  - {fileID: 8300000, guid: 222a88221ab40da4aa2ee90ce7f962c5, type: 3}

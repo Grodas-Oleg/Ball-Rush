@@ -14,7 +14,9 @@ namespace _DunkBall.Scripts.UI
 
         private void Awake()
         {
-            _backgroundSprite.sprite = DataSaver.GlobalData.CurrentTheme;
+            if (DataSaver.GlobalData.CurrentTheme != null)
+                _backgroundSprite.sprite = DataSaver.GlobalData.CurrentTheme;
+
             _buttonIcon.sprite = DataSaver.GlobalData.CurrentTheme == _dark ? _iconLight : _iconDark;
 
             _button.onClick.AddListener(() =>

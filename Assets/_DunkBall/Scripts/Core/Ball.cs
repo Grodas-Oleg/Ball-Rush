@@ -1,4 +1,5 @@
 using System.Collections;
+using _DunkBall.Scripts.Audio;
 using _DunkBall.Scripts.Utilities;
 using DG.Tweening;
 using UnityEngine;
@@ -10,13 +11,14 @@ namespace _DunkBall.Scripts.Core
     {
         private const float UNLOCK_DELAY = .3f;
         private const float DRAG_DISTANCE_THRESHOLD = .75f;
+        private const string COLLISION_SOUND = "energy";
 
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private float _forcePower;
         [SerializeField] private float _maxDragDistance;
         [SerializeField] private Trajectory _trajectory;
+        [SerializeField] private ParticleSystem _particleSystem;
         [SerializeField] private Transform _basketTransform;
-        [SerializeField] private int _collisionCount;
         private Camera _camera => Camera.main;
         private Vector2 _startPoint;
         private Vector2 _endPoint;
@@ -24,6 +26,7 @@ namespace _DunkBall.Scripts.Core
         private Vector2 _force;
         private float _distance;
         private bool _isLocked;
+        private int _collisionCount;
         public static int CollisionCount => Instance._collisionCount;
         private void Start() => RigidBodyStatus(true);
 
@@ -38,8 +41,6 @@ namespace _DunkBall.Scripts.Core
 
         private void OnMouseDown()
         {
-            if (EventSystem.current.IsPointerOverGameObject(0)) return;
-
             if (_isLocked) return;
 
             _startPoint = transform.position;
@@ -47,8 +48,6 @@ namespace _DunkBall.Scripts.Core
 
         private void OnMouseUp()
         {
-            if (EventSystem.current.IsPointerOverGameObject(0)) return;
-
             if (_isLocked) return;
 
             if (_distance <= DRAG_DISTANCE_THRESHOLD) return;
@@ -77,8 +76,6 @@ namespace _DunkBall.Scripts.Core
 
         private void OnMouseDrag()
         {
-            if (EventSystem.current.IsPointerOverGameObject(0)) return;
-
             if (_isLocked) return;
 
             RigidBodyStatus(true);
@@ -108,6 +105,11 @@ namespace _DunkBall.Scripts.Core
             _force = _direction * _distance * _forcePower;
         }
 
-        private void OnCollisionEnter2D(Collision2D other) => _collisionCount++;
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            _collisionCount++;
+            _particleSystem.Play();
+            AudioHelper.PlaySoundByName(COLLISION_SOUND);
+        }
     }
 }

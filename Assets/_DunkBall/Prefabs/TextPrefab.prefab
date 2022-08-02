@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3555422916310005849}
   - component: {fileID: 5246107909525889701}
   - component: {fileID: 434579384545185148}
+  - component: {fileID: 4383646003854937051}
   m_Layer: 0
   m_Name: TextPrefab
   m_TagString: Untagged
@@ -140,8 +141,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
-  m_fontSizeBase: 22
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -185,3 +186,14 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+--- !u!210 &4383646003854937051
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3555422916310005851}
+  m_Enabled: 1
+  m_SortingLayerID: 834192957
+  m_SortingLayer: 1
+  m_SortingOrder: 10
