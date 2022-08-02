@@ -14,12 +14,14 @@ namespace _DunkBall.Scripts.Rewards
 
         protected override void OnEnter(Collider2D other)
         {
+            if (!other.TryGetComponent(out Ball ball)) return;
+
             EventBus.OnNextBasketReached?.Invoke();
 
             var data = DataSaver.GlobalData;
 
             int value;
-            if (BallController.CollisionCount <= 0)
+            if (ball.CollisionCount <= 0)
             {
                 Announcer.SpawnAnnounce(transform.position, "perfect");
                 value = 2;

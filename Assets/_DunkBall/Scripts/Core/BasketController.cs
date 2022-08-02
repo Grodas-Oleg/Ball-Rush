@@ -29,7 +29,6 @@ namespace _DunkBall.Scripts.Core
 
         private void OnEnter(Collider2D other)
         {
-            BallController.SetParent(transform);
             ReloadLevel.Instance.transform.position = new Vector3(0, transform.position.y + OUT_OFF_LEVEL_OFFSET);
             if (transform.rotation != Quaternion.identity) transform.DORotateQuaternion(Quaternion.identity, .3f);
 

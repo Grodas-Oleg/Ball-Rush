@@ -138,7 +138,8 @@ GameObject:
   - component: {fileID: 3051799404786202586}
   - component: {fileID: 3051799404786202597}
   - component: {fileID: 3051799404786202596}
-  - component: {fileID: 655325958}
+  - component: {fileID: 3051799405682328060}
+  - component: {fileID: 8751935391074357401}
   m_Layer: 6
   m_Name: Ball
   m_TagString: Untagged
@@ -251,7 +252,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4.6
---- !u!114 &655325958
+--- !u!114 &3051799405682328060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -260,10 +261,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 3051799404786202598}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2ac7a077a4544f0aad7597aa2858252, type: 3}
+  m_Script: {fileID: 11500000, guid: b3e3da0bcd6e4b6b87a0f3d7d2090e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _forcePower: 5
+  _rigidbody: {fileID: 3051799404786202597}
+  _trajectory: {fileID: 185998693}
+  _particleSystem: {fileID: 7505126465064512491}
+  _basketTrigger: {fileID: 8751935391074357401}
+--- !u!114 &8751935391074357401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051799404786202598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bdfa4f061104c49afc68766216fb56e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isDisableOnEnter: 0
+  _isDisableOnExit: 0
   _onEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  _onExit:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &5675634989936682202

@@ -1,6 +1,7 @@
 using System.Collections;
 using _DunkBall.Scripts.Core;
 using UnityEngine;
+using Zenject;
 
 namespace _DunkBall.Scripts.Components
 {
@@ -8,7 +9,11 @@ namespace _DunkBall.Scripts.Components
     {
         [SerializeField] private float _offset;
         [SerializeField] private float _smoothSpeed = .1f;
-        private Transform _targetTransform => BallController.BallTransform;
+
+        [Inject]
+        private void Construct(Ball ball) => _targetTransform = ball.transform;
+
+        private Transform _targetTransform;
         private void Start() => StartCoroutine(FollowTarget());
 
         private IEnumerator FollowTarget()

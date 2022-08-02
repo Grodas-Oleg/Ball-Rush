@@ -1,4 +1,5 @@
 using _DunkBall.Scripts.Audio;
+using _DunkBall.Scripts.Core;
 using _DunkBall.Scripts.Data;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace _DunkBall.Scripts.Rewards
 
         protected override void OnEnter(Collider2D other)
         {
+            if (!other.TryGetComponent(out Ball ball)) return;
+
             var data = DataSaver.GlobalData;
             data.TotalStars++;
             DataSaver.GlobalData = data;
