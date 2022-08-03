@@ -6,7 +6,6 @@ namespace _DunkBall.Scripts.Infrastructure
     {
         public override void InstallBindings()
         {
-            
         }
     }
 }

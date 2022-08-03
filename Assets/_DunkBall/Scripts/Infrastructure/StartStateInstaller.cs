@@ -7,12 +7,21 @@ namespace _DunkBall.Scripts.Infrastructure
     public class StartStateInstaller : MonoInstaller
     {
         [SerializeField] private Transform _startPoint;
-        [SerializeField] private GameObject _ballPrefab;
+        [SerializeField] private Ball _ballPrefab;
+        [SerializeField] private Joystick _joystick;
 
         public override void InstallBindings()
         {
+            BindJoystick();
             BindBall();
         }
+
+        private void BindJoystick() =>
+            Container
+                .Bind<IJoystick>()
+                .To<Joystick>()
+                .FromInstance(_joystick)
+                .AsSingle();
 
         private void BindBall()
         {
@@ -20,7 +29,7 @@ namespace _DunkBall.Scripts.Infrastructure
                 _ballPrefab,
                 _startPoint.position,
                 Quaternion.identity,
-                null
+                _startPoint
             );
 
             Container.Bind<Ball>().FromInstance(ball).AsSingle();

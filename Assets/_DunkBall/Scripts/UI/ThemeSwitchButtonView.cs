@@ -37,5 +37,7 @@ namespace _DunkBall.Scripts.UI
                 DataSaver.GlobalData = data;
             });
         }
+
+        private void OnDestroy() => _button.onClick.RemoveAllListeners();
     }
 }

@@ -73,3 +73,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c00ea34b41bb4aafb27dded59bda7629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _JoystickPrefab: {fileID: 1715415853093554105, guid: e122f6cbd265047b0b41c434ba01d312, type: 3}

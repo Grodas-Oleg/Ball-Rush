@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using _DunkBall.Scripts.Components;
 using _DunkBall.Scripts.EventLayer;
-using _DunkBall.Scripts.Utilities;
 using Lean.Pool;
 using UnityEngine;
 using static _DunkBall.Scripts.Core.BasketPosition;
@@ -10,21 +9,21 @@ using Random = UnityEngine.Random;
 
 namespace _DunkBall.Scripts.Core
 {
-    public class RandomBasketSpawner : Singleton<RandomBasketSpawner>
+    public class RandomBasketSpawner : MonoBehaviour
     {
-        [SerializeField] private List<BasketTransformContainer> _transformContainers;
         [SerializeField] private LeanGameObjectPool _basketPool;
-        [SerializeField] private List<GameObject> _basketControllers;
         [SerializeField] private GameObject _startBasket;
+        [SerializeField] private List<BasketMarker> _markersContainer;
+        [SerializeField] private List<GameObject> _basketControllers;
 
         private List<BasketPosition> _freePositions;
         private BasketPosition _lastBasketPosition = Left;
 
-        protected override void OnAwake()
+        protected void Awake()
         {
             _freePositions = new List<BasketPosition>
             {
-                Center,
+                Middle,
                 Right
             };
 
@@ -35,14 +34,14 @@ namespace _DunkBall.Scripts.Core
 
         private void SpawnBasket()
         {
-            var randomTransform = GetRandomTransformByPosition();
+            var randomFreeMarker = GetRandomFreeMarker();
 
-            if (randomTransform == null) Debug.Log(randomTransform + "is Null");
+            if (randomFreeMarker == null) Debug.Log(randomFreeMarker + "is Null");
 
-            var randomTransformPosition = randomTransform.position;
-            randomTransformPosition.z = 0;
+            var markerPosition = randomFreeMarker.transform.position;
+            markerPosition.z = 0;
 
-            var basket = _basketPool.Spawn(randomTransformPosition, randomTransform.rotation);
+            var basket = _basketPool.Spawn(markerPosition, randomFreeMarker.transform.rotation);
 
             _basketControllers.Add(basket);
 
@@ -55,39 +54,27 @@ namespace _DunkBall.Scripts.Core
             _basketPool.Despawn(lastBasket);
         }
 
-        private Transform GetRandomTransformByPosition()
+        private BasketMarker GetRandomFreeMarker()
         {
             BasketPosition randomPosition = _freePositions[Random.Range(0, 2)];
 
-            foreach (var container in _transformContainers.Where(
-                container => container.BasketPosition == randomPosition))
-            {
-                _freePositions.Add(_lastBasketPosition);
-                _lastBasketPosition = randomPosition;
-                _freePositions.Remove(randomPosition);
-                return container.GetRandomTransform();
-            }
+            var markers = _markersContainer.FindAll(marker => marker.BasketPosition == randomPosition);
 
-            return default;
+            _freePositions.Add(_lastBasketPosition);
+            _lastBasketPosition = randomPosition;
+            _freePositions.Remove(randomPosition);
+
+            return markers[Random.Range(0, markers.Count)];
         }
 
         private void OnDestroy() => EventBus.OnNextBasketReached -= SpawnBasket;
     }
 
     [Serializable]
-    public class BasketTransformContainer
-    {
-        [SerializeField] private BasketPosition _basketPosition;
-        [SerializeField] private List<Transform> _points;
-        public Transform GetRandomTransform() => _points[Random.Range(0, _points.Count)];
-        public BasketPosition BasketPosition => _basketPosition;
-    }
-
-    [Serializable]
     public enum BasketPosition
     {
         Left,
-        Center,
+        Middle,
         Right
     }
 }
