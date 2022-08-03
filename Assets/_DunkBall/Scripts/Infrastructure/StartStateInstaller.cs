@@ -1,4 +1,5 @@
 using _DunkBall.Scripts.Core;
+using _DunkBall.Scripts.UI;
 using UnityEngine;
 using Zenject;
 
@@ -6,15 +7,25 @@ namespace _DunkBall.Scripts.Infrastructure
 {
     public class StartStateInstaller : MonoInstaller
     {
-        [SerializeField] private Transform _startPoint;
         [SerializeField] private Ball _ballPrefab;
+        [SerializeField] private Transform _startPoint;
         [SerializeField] private Joystick _joystick;
+        [SerializeField] private BasketSpawner _basketSpawner;
+        [SerializeField] private GameUI _gameUI;
 
         public override void InstallBindings()
         {
             BindJoystick();
+            BindBasketSpawner();
+            BindGameUI();
             BindBall();
         }
+
+        private void BindBasketSpawner() =>
+            Container
+                .Bind<BasketSpawner>()
+                .FromInstance(_basketSpawner)
+                .AsSingle();
 
         private void BindJoystick() =>
             Container
@@ -23,16 +34,22 @@ namespace _DunkBall.Scripts.Infrastructure
                 .FromInstance(_joystick)
                 .AsSingle();
 
+        private void BindGameUI() =>
+            Container
+                .Bind<GameUI>()
+                .FromInstance(_gameUI)
+                .AsSingle();
+
         private void BindBall()
         {
             var ball = Container.InstantiatePrefabForComponent<Ball>(
                 _ballPrefab,
                 _startPoint.position,
                 Quaternion.identity,
-                _startPoint
+                null
             );
 
-            Container.Bind<Ball>().FromInstance(ball).AsSingle();
+            Container.Bind<Ball>().FromInstance(ball).AsSingle().NonLazy();
         }
     }
 }

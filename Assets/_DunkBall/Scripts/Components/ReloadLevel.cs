@@ -5,6 +5,7 @@ using _DunkBall.Scripts.UI;
 using _DunkBall.Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace _DunkBall.Scripts.Components
 {
@@ -13,10 +14,11 @@ namespace _DunkBall.Scripts.Components
         private const string GAME_OVER = "game_over";
 
         [SerializeField] private TriggerComponent _trigger;
+        [Inject] private GameUI _gameUI;
 
         protected override void OnAwake() => _trigger.AddCallbacks(other =>
         {
-            GameUI.ShowRestartWindow();
+            _gameUI.SwitchRestartWindow(true);
             AudioHelper.PlaySoundByName(GAME_OVER);
         });
 

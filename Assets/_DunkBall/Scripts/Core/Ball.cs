@@ -34,7 +34,6 @@ namespace _DunkBall.Scripts.Core
             _joystick.OnJoystickDrag += OnJoystickDrag;
             _joystick.OnJoystickUp += OnJoystickUp;
         }
-
         private void Awake() => _basketTrigger.AddCallbacks(OnInBasket);
         private void OnInBasket(Collider2D other) => transform.SetParent(other.transform.parent);
 

@@ -21,10 +21,20 @@ namespace _DunkBall.Scripts.Core
         {
             _ballTrigger.AddCallbacks(OnEnter);
             _renderers.ForEach(spriteRenderer => spriteRenderer.color = Color.white);
-            _score?.gameObject.SetActive(true);
+            _star.gameObject.SetActive(Random.Range(0, 100) < _starSpawnChanche);
+        }
 
-            if (Random.Range(0, 100) > _starSpawnChanche) return;
-            _star.gameObject.SetActive(true);
+        public void DisableRewards()
+        {
+            _score.gameObject.SetActive(false);
+            _star.gameObject.SetActive(false);
+            _ballTrigger.gameObject.SetActive(false);
+        }
+
+        public void ResetBasket()
+        {
+            _score.gameObject.SetActive(true);
+            _ballTrigger.gameObject.SetActive(true);
         }
 
         private void OnEnter(Collider2D other)

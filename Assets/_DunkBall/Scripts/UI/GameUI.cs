@@ -1,12 +1,11 @@
 using _DunkBall.Scripts.EventLayer;
-using _DunkBall.Scripts.Utilities;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace _DunkBall.Scripts.UI
 {
-    public class GameUI : Singleton<GameUI>
+    public class GameUI : MonoBehaviour
     {
         [SerializeField] private BaseView _startWindow;
         [SerializeField] private BaseView _pauseWindow;
@@ -15,7 +14,7 @@ namespace _DunkBall.Scripts.UI
         [SerializeField] private Image _globalHider;
         private void Start() => _pauseWindow.Hide();
 
-        protected override void OnAwake()
+        private void Awake()
         {
             FadeGlobal(false, false, 0.5f);
 
@@ -28,44 +27,50 @@ namespace _DunkBall.Scripts.UI
             }
         }
 
-        public static void SwitchInteractablePauseButton(bool flag) => Instance._pauseButton.SwitchInteractable(flag);
-        public static void HideStartWindow() => Instance._startWindow.Hide();
-        public static void ShowRestartWindow() => Instance._restartWindow.Show();
+        public void HideStartWindow() => _startWindow.Hide();
 
-        public static void SwitchPauseWindow(bool flag)
+        public void SwitchRestartWindow(bool flag)
         {
             if (flag)
-                Instance._pauseWindow.Show();
+                _restartWindow.Show();
             else
-                Instance._pauseWindow.Hide();
+                _restartWindow.Hide();
         }
 
-        public static void FadeGlobal(bool @in, bool force, float delay = 0f, float fadeTime = 0.75f)
+        public void SwitchPauseWindow(bool flag)
+        {
+            if (flag)
+                _pauseWindow.Show();
+            else
+                _pauseWindow.Hide();
+        }
+
+        private void FadeGlobal(bool @in, bool force, float delay = 0f, float fadeTime = 0.75f)
         {
             if (force)
             {
-                Instance._globalHider.raycastTarget = @in;
-                var tempColor = Instance._globalHider.color;
+                _globalHider.raycastTarget = @in;
+                var tempColor = _globalHider.color;
                 tempColor.a = @in ? 1f : 0f;
-                Instance._globalHider.color = tempColor;
+                _globalHider.color = tempColor;
                 return;
             }
 
             if (@in)
             {
-                Instance._globalHider.raycastTarget = true;
-                Instance._globalHider
+                _globalHider.raycastTarget = true;
+                _globalHider
                     .DOFade(1f, fadeTime)
                     .SetDelay(delay)
                     .SetUpdate(true);
             }
             else
             {
-                Instance._globalHider
+                _globalHider
                     .DOFade(0f, fadeTime)
                     .SetDelay(delay)
                     .SetUpdate(true)
-                    .OnComplete(() => Instance._globalHider.raycastTarget = false);
+                    .OnComplete(() => _globalHider.raycastTarget = false);
             }
         }
     }
