@@ -18,7 +18,6 @@ namespace _DunkBall.Scripts.Components
                 _ => Gizmos.color
             };
             Gizmos.DrawSphere(transform.position, 0.25f);
-            Gizmos.DrawLine(transform.position, transform.position + new Vector3(1, 0, 0));
             Gizmos.color = Color.white;
         }
     }
