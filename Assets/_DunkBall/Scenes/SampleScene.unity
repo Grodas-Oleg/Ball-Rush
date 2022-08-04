@@ -1590,6 +1590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae10f666cff4b3eb7fb567f5ad290be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsNeedToDontDestroy: 0
   _textPool: {fileID: 373379295}
 --- !u!4 &373379297
 Transform:
@@ -2953,6 +2954,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _basketPosition: 0
+--- !u!1 &1043222407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1043222408}
+  - component: {fileID: 1043222409}
+  m_Layer: 0
+  m_Name: JoystickInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1043222408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043222407}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1887231189}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1043222409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043222407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd2895b8247452681319e0d2757dace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _joystick: {fileID: 1715415853715801838}
 --- !u!1 &1049353922
 GameObject:
   m_ObjectHideFlags: 0
@@ -3161,6 +3206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b76ed27db5d4025915de16336a34763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsNeedToDontDestroy: 0
   _audioHolder: {fileID: 11400000, guid: 3f092e78e043043df912eb022892782a, type: 2}
   _mainSoundsAudioSource: {fileID: 2072088218}
   _soundsAudioSource:
@@ -3284,6 +3330,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1276449760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1276449761}
+  - component: {fileID: 1276449762}
+  m_Layer: 0
+  m_Name: BallInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1276449761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276449760}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1887231189}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1276449762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276449760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75439f55c1d64706a3c41556cb350490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ballPrefab: {fileID: 3051799405682328060, guid: b67f1b5f5d0a343a29cb12b201ba052d, type: 3}
+  _startPoint: {fileID: 1739066389}
 --- !u!1 &1285643017
 GameObject:
   m_ObjectHideFlags: 0
@@ -4405,6 +4496,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560739790}
   m_CullTransparentMesh: 1
+--- !u!1 &1570326390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1570326391}
+  - component: {fileID: 1570326392}
+  m_Layer: 0
+  m_Name: GameUIInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1570326391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570326390}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1887231189}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1570326392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570326390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5aa746833f2403d8029adab10f80e2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameUI: {fileID: 467650646}
 --- !u!1 &1579807110
 GameObject:
   m_ObjectHideFlags: 0
@@ -4525,6 +4660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53cb3f6e36364ab8a92e40fdfb7f04b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsNeedToDontDestroy: 0
   _trigger: {fileID: 1597581186}
 --- !u!114 &1597581186
 MonoBehaviour:
@@ -5289,7 +5425,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1887231189}
   - component: {fileID: 1887231188}
-  - component: {fileID: 1887231190}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -5311,7 +5446,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 1887231190}
+  - {fileID: 1043222409}
+  - {fileID: 1276449762}
+  - {fileID: 1570326392}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -5339,30 +5476,13 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1276449761}
+  - {fileID: 1043222408}
+  - {fileID: 1570326391}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1887231190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1887231187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75439f55c1d64706a3c41556cb350490, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ballPrefab: {fileID: 3051799405682328060, guid: b67f1b5f5d0a343a29cb12b201ba052d, type: 3}
-  _startPoint: {fileID: 1739066389}
-  _joystick: {fileID: 1715415853715801838}
-  _basketSpawner: {fileID: 966717280}
-  _gameUI: {fileID: 467650646}
-  _announcer: {fileID: 373379296}
-  _reloadLevel: {fileID: 1597581185}
-  _audioHelper: {fileID: 1127192808}
 --- !u!1 &1897659413
 GameObject:
   m_ObjectHideFlags: 0
