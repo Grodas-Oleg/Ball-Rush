@@ -1564,6 +1564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae10f666cff4b3eb7fb567f5ad290be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsNeedToDontDestroy: 0
   _textPool: {fileID: 409181804}
 --- !u!4 &373379297
 Transform:
@@ -5523,7 +5524,6 @@ MonoBehaviour:
   - {fileID: 1043222409}
   - {fileID: 1570326392}
   - {fileID: 1276449762}
-  - {fileID: 726648909}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
