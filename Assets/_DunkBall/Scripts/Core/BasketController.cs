@@ -31,12 +31,6 @@ namespace _DunkBall.Scripts.Core
             _ballTrigger.gameObject.SetActive(false);
         }
 
-        public void ResetBasket()
-        {
-            _score.gameObject.SetActive(true);
-            _ballTrigger.gameObject.SetActive(true);
-        }
-
         private void OnEnter(Collider2D other)
         {
             ReloadLevel.Instance.transform.position = new Vector3(0, transform.position.y + OUT_OFF_LEVEL_OFFSET);
@@ -44,6 +38,12 @@ namespace _DunkBall.Scripts.Core
 
             if (_score == null) return;
             _renderers.ForEach(spriteRenderer => spriteRenderer.color = new Color(0.59f, 0.59f, 0.59f));
+        }
+
+        public void OnDisable()
+        {
+            _score.gameObject.SetActive(true);
+            _ballTrigger.gameObject.SetActive(true);
         }
     }
 }

@@ -64,7 +64,6 @@ namespace _DunkBall.Scripts.Core
             if (_basketControllers.Count <= 2) return;
 
             var lastBasket = _basketControllers[0];
-            lastBasket.GetComponent<BasketController>().ResetBasket();
             _basketControllers.Remove(lastBasket);
             _basketPool.Despawn(lastBasket);
         }
