@@ -19,6 +19,7 @@ namespace _DunkBall.Scripts.Core
 
         private List<BasketPosition> _freePositions;
         private BasketPosition _lastBasketPosition;
+
         [Inject] private Ball _ball;
 
         protected void Awake()

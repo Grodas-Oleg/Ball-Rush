@@ -3,7 +3,7 @@ using _DunkBall.Scripts.Core;
 using _DunkBall.Scripts.Data;
 using UnityEngine;
 
-namespace _DunkBall.Scripts.Rewards
+namespace _DunkBall.Scripts.Collectables
 {
     public class CollectableStar : CollectableBase
     {

@@ -6,7 +6,7 @@ using _DunkBall.Scripts.EventLayer;
 using DG.Tweening;
 using UnityEngine;
 
-namespace _DunkBall.Scripts.Rewards
+namespace _DunkBall.Scripts.Collectables
 {
     public class CollectableScore : CollectableBase
     {

@@ -1,7 +1,7 @@
 using _DunkBall.Scripts.Components;
 using UnityEngine;
 
-namespace _DunkBall.Scripts.Rewards
+namespace _DunkBall.Scripts.Collectables
 {
     public class CollectableBase : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using _DunkBall.Scripts.Collectables;
 using _DunkBall.Scripts.Components;
-using _DunkBall.Scripts.Rewards;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
